@@ -9,6 +9,7 @@
   "author": "Obinna Odirionye",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "commander": "^3.0.0",
     "inquirer": "^6.5.0"
   }
