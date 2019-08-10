@@ -1,0 +1,9 @@
+{
+  "name": "thisdot-cli",
+  "version": "1.0.0",
+  "description": "This is a simple CLI for checking Tax and Totals",
+  "main": "src/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
