@@ -5,5 +5,8 @@
   "main": "src/index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.5.0"
+  }
 }
