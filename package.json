@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "This is a simple CLI for checking Tax and Totals",
   "main": "src/index.js",
+  "preferGlobal": true,
+  "bin": "./src/index.js",
   "keywords": [],
-  "author": "",
+  "author": "Obinna Odirionye",
   "license": "ISC",
   "dependencies": {
     "commander": "^3.0.0",
