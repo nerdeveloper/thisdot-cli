@@ -19,3 +19,21 @@ program
       });
 
 program.parse(process.argv);
+
+var zipcode = ["20500", "20748", "34248", "37312", "46523",
+"46523", "75093", "75876", "84111", "95361"];
+
+
+const decimal = (program.subtotal - Math.floor(program.subtotal)) !== 0;
+
+if (!decimal) {
+  console.log(chalk.red(`Pass in a valid number e.g 10000.00`));
+}
+
+else if(program.zipcode === undefined) console.log(chalk.red(`error: Enter a valid zipcode --zipcode `));
+ if(zipcode.includes(program.zipcode)) {
+  api.calculate(program.zipcode, program.subtotal);
+ }else{
+  console.log(chalk.red(`error: Enter a valid zipcode that matches your location`));
+ }
+
