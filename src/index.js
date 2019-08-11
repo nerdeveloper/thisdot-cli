@@ -38,8 +38,6 @@ program.parse(process.argv);
     }
   }
 
-
-
   if (program.subtotal && program.zipcode) {
     const checkifDecmailisPresent = program.subtotal.indexOf('.') < 1;
     if (checkifDecmailisPresent) {
@@ -51,9 +49,7 @@ program.parse(process.argv);
         console.log(chalk.red(`error: Enter a valid zipcode that matches your location`));
 
       }
-
       else {
-
         const spinner = ora('Submitted Data Inputs').start();
         setTimeout(() => {
           spinner.color = 'yellow';
