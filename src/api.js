@@ -52,9 +52,9 @@ exports.calculate = async (zipcode, subtotal) => {
 
     }).then(response => {
         if (response.data.status_code === 0) {
-            console.log(chalk.blue(`Message: ${response.data.status_message}`));
+            console.log(chalk.blue.bold(`Message: ${response.data.status_message}`));
         } else {
-            console.log(chalk.red(`Error: ${response.data.status_message}`));
+            console.log(chalk.red.bold(`Error: ${response.data.status_message}`));
         }
     }).catch(error => {
         console.log(error);

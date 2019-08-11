@@ -58,7 +58,8 @@ program.parse(process.argv);
         const delay = ms => new Promise(res => setTimeout(res, ms));
         await delay(1000);
         console.log(boxen(`Order Sub-Total: ${program.subtotal} \nZipcode: ${program.zipcode}`, { padding: 1, margin: 1, borderStyle: 'double', borderColor: 'blue' }));
-        spinner.succeed('Submitted Data Inputs');
+        spinner.succeed('Submitted Data Inputs.');
+        console.log(`Hey you! Please Wait ... 🛑🛑🛑`);
         await api.calculate(program.zipcode, program.subtotal);
 
       }
