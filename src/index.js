@@ -4,6 +4,7 @@ const program = require('commander');
 const chalk = require('chalk');
 const api = require('./api')
 const ora = require('ora');
+const boxen = require('boxen');
 program
 
   .description('CLI for checking Tax and Totals')
@@ -50,11 +51,14 @@ program.parse(process.argv);
 
       }
       else {
-        const spinner = ora('Submitted Data Inputs').start();
+        const spinner = ora('Submitting Data Inputs').start();
         setTimeout(() => {
           spinner.color = 'yellow';
         }, 1000);
-        spinner.succeed()
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+        await delay(1000);
+        console.log(boxen(`Order Sub-Total: ${program.subtotal} \nZipcode: ${program.zipcode}`, { padding: 1, margin: 1, borderStyle: 'double', borderColor: 'blue' }));
+        spinner.succeed('Submitted Data Inputs');
         await api.calculate(program.zipcode, program.subtotal);
 
       }
