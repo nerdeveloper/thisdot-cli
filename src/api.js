@@ -3,7 +3,7 @@ const axios = require('axios');
 const chalk = require('chalk');
 
 exports.calculate = async (zipcode, subtotal) => {
-  subtotal = (+subtotal).toFixed(2);
+  const newSubtotal = (+subtotal).toFixed(2);
 
   await axios
     .get('https://deft-cove-227620.appspot.com/api/tax', {
@@ -19,8 +19,8 @@ exports.calculate = async (zipcode, subtotal) => {
       if (response.status === 200) {
         number.zipcode = response.data.zipcode;
         number.tax_rate = response.data.tax_rate;
-        number.tax_total = (number.tax_rate / 100) * subtotal;
-        number.total = +subtotal + number.tax_total;
+        number.tax_total = (number.tax_rate / 100) * newSubtotal;
+        number.total = +newSubtotal + number.tax_total;
       } else {
         console.log(chalk.red(`Error: ${response.status.statusText}`));
       }
@@ -31,7 +31,7 @@ exports.calculate = async (zipcode, subtotal) => {
   const params = {
     zipcode,
     tax_rate: number.tax_rate,
-    sub_total: subtotal,
+    sub_total: newSubtotal,
     tax_total: number.tax_total.toFixed(2),
     total: number.total.toFixed(2),
   };
