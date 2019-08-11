@@ -3,7 +3,7 @@
 const program = require('commander');
 const chalk = require('chalk');
 const api = require('./api')
-
+const ora = require('ora');
 program
 
   .description('CLI for checking Tax and Totals')
@@ -21,40 +21,48 @@ program.on('--help', function () {
 
 program.parse(process.argv);
 
-var zipcode = ["20500", "20748", "34248", "37312", "46523",
-  "46523", "75093", "75876", "84111", "95361"];
+(async () => {
+  var zipcode = ["20500", "20748", "34248", "37312", "46523",
+    "46523", "75093", "75876", "84111", "95361"];
 
-if (program.zipcode === undefined && program.subtotal === undefined) {
-  program.help();
-}
-
-if (program.zipcode && program.subtotal === undefined) {
-  console.log(chalk.red(`error: Enter a valid subtotal`));
-} else {
-  if (program.subtotal && program.zipcode === undefined) {
-    console.log(chalk.red(`error: Enter a valid zip code`));
-
+  if (program.zipcode === undefined && program.subtotal === undefined) {
+    program.help();
   }
-}
 
-
-
-if (program.subtotal && program.zipcode) {
-  const checkifDecmailisPresent = program.subtotal.indexOf('.') < 1;
-  if (checkifDecmailisPresent) {
-    console.log(chalk.red(`error: pass in a valid decimal number e.g 10000.00`));
-  }
-  else {
-
-    if (!zipcode.includes(program.zipcode)) {
-      console.log(chalk.red(`error: Enter a valid zipcode that matches your location`));
+  if (program.zipcode && program.subtotal === undefined) {
+    console.log(chalk.red(`error: Enter a valid subtotal`));
+  } else {
+    if (program.subtotal && program.zipcode === undefined) {
+      console.log(chalk.red(`error: Enter a valid zip code`));
 
     }
+  }
 
+
+
+  if (program.subtotal && program.zipcode) {
+    const checkifDecmailisPresent = program.subtotal.indexOf('.') < 1;
+    if (checkifDecmailisPresent) {
+      console.log(chalk.red(`error: pass in a valid decimal number e.g 10000.00`));
+    }
     else {
-      api.calculate(program.zipcode, program.subtotal);
-      console.log(program.zipcode, program.u)
+
+      if (!zipcode.includes(program.zipcode)) {
+        console.log(chalk.red(`error: Enter a valid zipcode that matches your location`));
+
+      }
+
+      else {
+
+        const spinner = ora('Submitted Data Inputs').start();
+        setTimeout(() => {
+          spinner.color = 'yellow';
+        }, 1000);
+        spinner.succeed()
+        await api.calculate(program.zipcode, program.subtotal);
+
+      }
     }
   }
-
-}
+})
+  ();
