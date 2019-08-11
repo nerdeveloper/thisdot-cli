@@ -17,13 +17,21 @@ exports.calculate = async (zipcode, subtotal) => {
         },
 
     }).then(response => {
-        number.zipcode = response.data.zipcode;
-        number.tax_rate = response.data.tax_rate;
-        number.tax_total = (number.tax_rate / 100) * subtotal;
-        number.total = +subtotal + number.tax_total;
-        
+        if (response.data.status_code === 0) {
 
- }).catch(error => {
+            number.zipcode = response.data.zipcode;
+            number.tax_rate = response.data.tax_rate;
+            number.tax_total = (number.tax_rate / 100) * subtotal;
+            number.total = +subtotal + number.tax_total;
+        } else {
+
+            console.log(chalk.red(`Error: ${response.data.status_message}`));
+        }
+
+
+
+
+    }).catch(error => {
         console.log(error);
     });
     const params = {
@@ -48,7 +56,7 @@ exports.calculate = async (zipcode, subtotal) => {
         } else {
             console.log(chalk.red(`Error: ${response.data.status_message}`));
         }
- }).catch(error => {
+    }).catch(error => {
         console.log(error);
     });
 
