@@ -5,6 +5,9 @@
   "main": "src/index.js",
   "preferGlobal": true,
   "bin": "./src/index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --quiet ."
+  },
   "keywords": [],
   "author": "Obinna Odirionye",
   "license": "ISC",
