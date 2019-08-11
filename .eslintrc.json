@@ -1,0 +1,37 @@
+{
+    "extends": [
+        "airbnb",
+        "prettier"
+    ],
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "node": true
+    },
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "treatUndefinedAsUnspecified": true,
+        "no-console": "off",
+        "prettier/prettier": [
+            "error"
+        ],
+        "import/no-unresolved": 0,
+        "import/extensions": 0,
+        "max-len": [
+            "warn",
+            {
+                "tabWidth": 2,
+                "ignoreComments": false,
+                "ignoreTrailingComments": true,
+                "ignoreUrls": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true
+                
+                
+            }
+        ]
+    }
+}
